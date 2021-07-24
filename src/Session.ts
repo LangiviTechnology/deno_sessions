@@ -4,7 +4,7 @@ import {Store} from "./stores/Store.ts";
 
 export default class Session {
    private store:Store;
-   private id:string = '';
+   public id:string = '';
   constructor (store:Store|null = null) {
     this.store = store || new MemoryStore
   }

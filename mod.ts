@@ -4,12 +4,13 @@ import MemoryStore from './src/stores/MemoryStore.ts'
 import SqliteStore from './src/stores/SqliteStore.ts'
 import RedisStore from './src/stores/RedisStore.ts'
 import WebdisStore from './src/stores/WebdisStore.js'
-
+import { OpineRequest } from './types.ts'
 export {
   OakSession,
   OpineSession,
   MemoryStore,
   SqliteStore,
   RedisStore,
-  WebdisStore,
+  WebdisStore
 }
+export type {OpineRequest}
