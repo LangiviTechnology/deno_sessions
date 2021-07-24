@@ -1,11 +1,12 @@
-import Session from '../Session.js'
+import Session from '../Session.ts'
 import { getCookies } from "https://deno.land/std@0.93.0/http/cookie.ts";
-
+import type {NextFunction, Request, Response, Opine} from "https://deno.land/x/opine@1.6.0/mod.ts";
+import {Store} from "../stores/Store.ts";
 export default class OpineSession extends Session {
-  constructor(opineApp, options = {}, store) {
+  constructor(opineApp:Opine, options:{secure?:boolean, path?:string} = {}, store:Store) {
     super(store || null)
 
-    opineApp.use(async (req, res, next) => {
+    opineApp.use(async (req:Request, res:Response, next:NextFunction) => {
       const { sid } = getCookies(req);
 
       // if (req.url == '/favicon.ico') {

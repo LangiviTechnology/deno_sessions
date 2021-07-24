@@ -1,12 +1,15 @@
 import { v4 } from "https://deno.land/std@0.93.0/uuid/mod.ts"
-import MemoryStore from './stores/MemoryStore.js'
+import MemoryStore from './stores/MemoryStore.ts'
+import {Store} from "./stores/Store.ts";
 
 export default class Session {
-  constructor (store = null) {
+   private store:Store;
+   private id:string = '';
+  constructor (store:Store|null = null) {
     this.store = store || new MemoryStore
   }
 
-  async sessionExists(id) {
+  async sessionExists(id:string) {
     return await this.store.sessionExists(id)
   }
 
@@ -16,12 +19,12 @@ export default class Session {
     return this
   }
 
-  getSession(id) {
+  getSession(id:string) {
     this.id = id
     return this
   }
 
-  async get(key) {
+  async get(key:string) {
     const session = await this.store.getSessionById(this.id)
 
     if (session.hasOwnProperty(key)) {
@@ -31,19 +34,19 @@ export default class Session {
     }
   }
 
-  async set(key, value) {
+  async set(key:string, value:unknown) {
     const session = await this.store.getSessionById(this.id)
     session[key] = value
     await this.store.persistSessionData(this.id, session)
   }
 
-  async flash(key, value) {
+  async flash(key:string, value:unknown) {
     const session = await this.store.getSessionById(this.id)
     session['_flash'][key] = value
     await this.store.persistSessionData(this.id, session)
   }
 
-  async has(key) {
+  async has(key:string) {
     const session = await this.store.getSessionById(this.id)
 
     if (session.hasOwnProperty(key)) {
@@ -55,5 +58,9 @@ export default class Session {
         return false
       }
     }
+  }
+
+  async delete(key:string){
+    return await this.store.deleteSession(key);
   }
 }

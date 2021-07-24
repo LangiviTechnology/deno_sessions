@@ -1,4 +1,4 @@
-import Session from '../Session.js'
+import Session from '../Session.ts'
 
 export default class OakSession extends Session {
   constructor(oakApp, store = null) {
