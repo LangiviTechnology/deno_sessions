@@ -1,4 +1,4 @@
-import {connect, Redis} from 'https://deno.land/x/redis@v0.22.2/mod.ts'
+import {connect, Redis}  from "../../deps.ts";
 import {Store} from "./Store.ts";
 
 export default class RedisStore implements Store {

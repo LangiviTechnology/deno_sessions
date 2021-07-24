@@ -1,7 +1,8 @@
 import Session from '../Session.ts'
-import {getCookies} from "https://deno.land/std@0.93.0/http/cookie.ts";
+import {getCookies} from "../../deps.ts";
 import {Store} from "../stores/Store.ts";
-import {NextFunction, Request, Response, Opine, OpineRequest} from "../../types.ts";
+import {NextFunction, Request, Response, Opine} from "../../deps.ts";
+import {OpineRequest} from "../../types.ts"
 
 export default class OpineSession extends Session {
     constructor(opineApp: Opine, options: { secure?: boolean, path?: string } = {}, store: Store) {

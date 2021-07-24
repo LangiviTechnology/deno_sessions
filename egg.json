@@ -1,9 +1,9 @@
 {
   "$schema": "https://x.nest.land/eggs@0.3.6/src/schema.json",
   "name": "sessions",
-  "description": "Sessions for Deno web frameworks",
-  "homepage": "https://github.com/jcs224/deno_sessions",
-  "version": "1.5.2",
+  "description": "Sessions  middleware for Deno web frameworks",
+  "homepage": "https://github.com/LangiviTechnology/sessions",
+  "version": "1.5.5",
   "files": [
     "./src/**/*",
     "./README.md",
