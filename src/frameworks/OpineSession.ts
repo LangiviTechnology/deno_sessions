@@ -9,14 +9,14 @@ export default class OpineSession extends Session {
         super(store || null)
 
         opineApp.use(async (req: Request | OpineRequest, res: Response, next: NextFunction) => {
-            const {sid} = getCookies(req as Request);
+            const {sid} = getCookies(req.headers);
 
             // if (req.url == '/favicon.ico') {
             //   await next()
             // }
 
             if (!options.secure) {
-                options.secure = req.protocol === "https" ? true : false;
+                options.secure = req.protocol === "https";
             }
             if (!options.path) {
                 options.path = "/";
